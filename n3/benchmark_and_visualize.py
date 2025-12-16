@@ -58,8 +58,8 @@ def run_benchmarks():
             results['recursive']['operations'].append(None)
             results['recursive']['values'].append(None)
         
-        # 2. Algoritmo Recursivo com Memoização
-        print("\n2. Recursivo com Memoização:")
+        # 2. Algoritmo Recursivo com memorização
+        print("\n2. Recursivo com memorização:")
         memo = {}
         start_time = time.time()
         result_memo, operations_memo = memoized_unbounded_knapsack(
@@ -119,7 +119,7 @@ def generate_graphs(capacities, results):
     ax1.plot(cap_recursive, times_recursive, 'o-', label='Recursivo Simples', 
              linewidth=2, markersize=8, color='#e74c3c')
     ax1.plot(capacities, results['memoized']['times'], 's-', 
-             label='Recursivo + Memoização', linewidth=2, markersize=8, color='#3498db')
+             label='Recursivo + memorização', linewidth=2, markersize=8, color='#3498db')
     ax1.plot(capacities, results['dynamic']['times'], '^-', 
              label='Programação Dinâmica', linewidth=2, markersize=8, color='#2ecc71')
     ax1.set_xlabel('Capacidade da Mochila', fontsize=12, fontweight='bold')
@@ -133,7 +133,7 @@ def generate_graphs(capacities, results):
     ax2.plot(cap_recursive, ops_recursive, 'o-', label='Recursivo Simples', 
              linewidth=2, markersize=8, color='#e74c3c')
     ax2.plot(capacities, results['memoized']['operations'], 's-', 
-             label='Recursivo + Memoização', linewidth=2, markersize=8, color='#3498db')
+             label='Recursivo + memorização', linewidth=2, markersize=8, color='#3498db')
     ax2.plot(capacities, results['dynamic']['operations'], '^-', 
              label='Programação Dinâmica', linewidth=2, markersize=8, color='#2ecc71')
     ax2.set_xlabel('Capacidade da Mochila', fontsize=12, fontweight='bold')
@@ -148,7 +148,7 @@ def generate_graphs(capacities, results):
     ax3.semilogy(cap_recursive, times_recursive, 'o-', label='Recursivo Simples', 
                  linewidth=2, markersize=8, color='#e74c3c')
     ax3.semilogy(capacities, results['memoized']['times'], 's-', 
-                 label='Recursivo + Memoização', linewidth=2, markersize=8, color='#3498db')
+                 label='Recursivo + memorização', linewidth=2, markersize=8, color='#3498db')
     ax3.semilogy(capacities, results['dynamic']['times'], '^-', 
                  label='Programação Dinâmica', linewidth=2, markersize=8, color='#2ecc71')
     ax3.set_xlabel('Capacidade da Mochila', fontsize=12, fontweight='bold')
@@ -163,7 +163,7 @@ def generate_graphs(capacities, results):
         ax4.scatter(ops_recursive, times_recursive, s=100, alpha=0.6, 
                    label='Recursivo Simples', color='#e74c3c')
     ax4.scatter(results['memoized']['operations'], results['memoized']['times'], 
-               s=100, alpha=0.6, label='Recursivo + Memoização', color='#3498db')
+               s=100, alpha=0.6, label='Recursivo + memorização', color='#3498db')
     ax4.scatter(results['dynamic']['operations'], results['dynamic']['times'], 
                s=100, alpha=0.6, label='Programação Dinâmica', color='#2ecc71')
     ax4.set_xlabel('Número de Operações', fontsize=12, fontweight='bold')
@@ -185,7 +185,7 @@ def generate_graphs(capacities, results):
     mid_idx = len(capacities) // 2
     mid_capacity = capacities[mid_idx]
     
-    algorithms = ['Recursivo', 'Memoização', 'Prog. Dinâmica']
+    algorithms = ['Recursivo', 'memorização', 'Prog. Dinâmica']
     times_comparison = [
         results['recursive']['times'][mid_idx] if results['recursive']['times'][mid_idx] else 0,
         results['memoized']['times'][mid_idx],
@@ -258,7 +258,7 @@ def print_summary_table(capacities, results):
             print(f"{cap:<12} {'Recursivo Simples':<25} {'FALHOU':<15} {'N/A':<15} {'N/A':<10}")
         
         # Memoizado
-        print(f"{'':<12} {'Recursivo + Memoização':<25} "
+        print(f"{'':<12} {'Recursivo + memorização':<25} "
               f"{results['memoized']['times'][i]:<15.6f} "
               f"{results['memoized']['operations'][i]:<15} "
               f"{results['memoized']['values'][i]:<10}")
@@ -274,7 +274,7 @@ def print_summary_table(capacities, results):
     print("ANÁLISE DE COMPLEXIDADE")
     print("="*100)
     print("• Recursivo Simples: Complexidade exponencial O(n^W) - muito lento para grandes entradas")
-    print("• Recursivo + Memoização: Complexidade O(n*W) - evita recalcular subproblemas")
+    print("• Recursivo + memorização: Complexidade O(n*W) - evita recalcular subproblemas")
     print("• Programação Dinâmica: Complexidade O(n*W) - solução iterativa eficiente")
     print("  (onde n = número de itens, W = capacidade da mochila)")
     print("="*100)
