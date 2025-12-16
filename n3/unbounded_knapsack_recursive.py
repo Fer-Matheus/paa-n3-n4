@@ -10,14 +10,10 @@ def unbounded_knapsack_recursive(values: list, weights: list, capacity: int) -> 
     '''
     max_values, operations = 0, 0
     for i, value in enumerate(values):
-        operations += 1  # acesso a weights[i]
-        operations += 1  # comparação weights[i] <= capacity
+        operations += 1
         if weights[i] <= capacity:
-            operations += 1  # subtração capacity - weights[i]
             current_value, operations_rec = unbounded_knapsack_recursive(
                 values, weights, capacity - weights[i])
-            operations += 1  # soma value + current_value
-            operations += 1  # operação max()
             max_values = max(max_values, value + current_value)
             operations += operations_rec
     return max_values, operations
@@ -31,24 +27,18 @@ def memoized_unbounded_knapsack(values: list, weights: list, capacity: int, memo
         memo: dicionário para armazenar resultados já computados
         Retorna o valor máximo que pode ser obtido com a capacidade dada.
     '''
-    operations = 1  # verificação capacity in memo
+    max_values, operations = 0, 0
     if capacity in memo:
         return memo[capacity], operations
     
-    max_values = 0
     for i, value in enumerate(values):
-        operations += 1  # acesso a weights[i]
-        operations += 1  # comparação weights[i] <= capacity
+        operations += 1
         if weights[i] <= capacity:
-            operations += 1  # subtração capacity - weights[i]
             current_value, operations_rec = memoized_unbounded_knapsack(
                 values, weights, capacity - weights[i], memo)
-            operations += 1  # soma value + current_value
-            operations += 1  # operação max()
             max_values = max(max_values, value + current_value)
             operations += operations_rec
-    
-    operations += 1  # atribuição memo[capacity]
+
     memo[capacity] = max_values
     return max_values, operations
 def unbounded_knapsack_dp(values: list, weights: list, capacity: int) -> tuple:
@@ -71,18 +61,10 @@ def unbounded_knapsack_dp(values: list, weights: list, capacity: int) -> tuple:
 
     for w in range(1, capacity + 1):
         for i in range(n):
-            operations += 1  # acesso a weights[i]
-            operations += 1  # comparação weights[i] <= w
+            operations += 1  
             if weights[i] <= w:
-                operations += 1  # subtração w - weights[i]
-                operations += 1  # acesso dp[w - weights[i]]
-                operations += 1  # soma com values[i]
                 candidate = dp[w - weights[i]] + values[i]
-                operations += 1  # acesso dp[w]
-                operations += 1  # comparação candidate > dp[w]
                 if candidate > dp[w]:
-                    operations += 1  # atribuição dp[w]
-                    operations += 1  # atribuição choice[w]
                     dp[w] = candidate
                     choice[w] = i
 
